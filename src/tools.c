@@ -5,14 +5,25 @@
 //
 
 //init variables
-void init_global_context()
+void init_contexts()
 {
+	global_context = malloc(sizeof(context_t));
 
+	global_context->prev = NULL;
+	global_context->next = NULL;
+	global_context->vars = NULL;
 }
-//free variables
-void free_global_context()
-{
 
+//free variables
+void free_contexts()
+{
+	context_t *tmp, *context = current_context;
+	while(context != NULL) {
+		tmp = context->next;
+		free_context(context);
+		context = tmp;
+	}
+	current_context = NULL;
 }
 
 //

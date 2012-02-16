@@ -14,20 +14,32 @@ typedef struct variable_t {
 	int assigned;
 } variable_t;
 
-typedef struct context_t {
+
+typedef struct node_variable_t {
 	variable_t *var;
-	struct context_t *previous;
+	node_variable_t *next;
+} node_variable_t;
+
+
+typedef struct context_t {
+	node_variable_t *vars;
+	struct context_t *prev;
 	struct context_t *next;
 } context_t;
+
+/* last context
+ * NULL if not initialize
+ */
+context_t * current_context;
 
 //
 //mandatory functions
 //
 
 //init variables
-void init_global_context();
+void init_contexts();
 //free variables
-void free_global_context();
+void free_contexts();
 
 //
 //vital functions
