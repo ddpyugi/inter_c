@@ -1,9 +1,20 @@
 #include "tools.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <../src/tools.h>
 
-int main()
+void test_simple()
+
+int main(int argc, char **argv)
 {
-	printf("hello world\n");
+	if(argc<2) {
+		fprintf(stderr, "Miss test number");
+		exit(EXIT_SUCCESS);
+	}
+	switch(atoi(argv[1])) {
+	case 1: ;
+	default: ;
+	}
 }
 
 
