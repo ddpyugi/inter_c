@@ -12,25 +12,21 @@ typedef struct variable_t {
 	type_t type;
 	void *value;
 	int assigned;
+
+	struct variable_t *next;
 } variable_t;
 
 
-typedef struct node_variable_t {
-	variable_t *var;
-	node_variable_t *next;
-} node_variable_t;
-
-
 typedef struct context_t {
-	node_variable_t *vars;
-	struct context_t *prev;
-	struct context_t *next;
+	variable_t *vars;
+	struct context_t *upper;
+	struct context_t *lower;
 } context_t;
 
 /* last context
  * NULL if not initialize
  */
-context_t * current_context;
+context_t *current_context;
 
 //
 //mandatory functions
